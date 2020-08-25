@@ -28,12 +28,11 @@
 
         #content {
             position: absolute;
-            top: 10px;
-            bottom: 20px;
+            top:20px;
             left: 0;
             right: 0;
             width: 90%;
-            height: auto;
+            height: 1300px;
             line-height: 24px;
             margin: auto;
             border-radius: 5px;
@@ -47,13 +46,21 @@
         #content::before {
             content: '';
             position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
             filter: blur(20px);
             z-index: -1;
-            margin: -30px;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            /* css-3 */
+            white-space: -moz-pre-wrap;
+            /* Mozilla, since 1999 */
+            white-space: -pre-wrap;
+            /* Opera 4-6 */
+            white-space: -o-pre-wrap;
+            /* Opera 7 */
+            word-wrap: break-word;
+            /* Internet Explorer 5.5+ */
         }
 
         .bg1 {
@@ -66,6 +73,7 @@
             background: url(./image/bg6.png) -111px -86px;
             opacity: 0.3;
         }
+
         #trial {
             width: 100%;
             max-width: 700px;
@@ -118,37 +126,44 @@
         </svg>
     </div>
     <div class="bg1"></div>
-    <div id="content">
+    <pre id="content"></pre>
+    <div style="display:none" id="word">
+    嘿 我的亲爱的大宝贝~
+    见字如晤。
+    今天是8月25日，这是我们在一起以后度过的第一个七夕。
+    从最开始的相识，到现在，经历的不算太多，也不算太少，能遇见你，是缘分，也是上天的恩赐。能遇见现在的你，是我的荣幸，所以我会好好珍惜，好好爱你。
+    希望从今后是朝朝暮暮在一起，地久天长，同心比翼，相敬相爱相扶持。
+    如果再多给我们一点相处的时间，我希望牵你的手，再一起吹吹夏天的风，大口大口呼吸岁月的气息。亦或许坐在台阶上，听着路边熟悉的民谣，暖黄色的灯，将我们的影子远远拉长。我想让你觉得，你是我至今所见过最好的礼物。
+    我说话通常也是想到哪里说哪里，想一出是一出，摸不着头脑。但我每天都想和你有明天，和你在一起，快乐也会变成双份。
+    在你抱着我的时候，在听着你说宝贝的时候，在走路主动伸出手让我牵你的时候，每一个瞬间我都想让时间静止。
+    写到这里，我又自然而然的开始想念你。真糟糕。坠入爱河的人都会这样麻烦吗？最近觉得，有可以想念的人，是一件很幸福的事。
+    我知道生活和现实或许不会那么容易，但我知道我的未来，有你。
+    爱就是和喜欢的人吃很多顿饭，和喜欢的人，一起把时间浪费在更有意义的事情上才是，也希望你不要轻易让我难过哦，不要欺负我！！！
+    我真的好爱你啊，炽热纯粹，或许平淡生活让并我不常表露出这点，但你要知道，你被我安安稳稳喜欢着，这之前希望你都有记住我说过的话，或是多年以后，你躺在我怀里时，能记起我曾如此的爱着你，从未改变。
+    生活太苦，我想加你这块糖。
+    最近很想你，最远也是。
+
+
+    by 爱你的猪猪
     </div>
-    <audio autoplay="autoplay">
+    <!-- <audio autoplay="autoplay">
         <source src="./mp3/gaobai.mp3" type="audio/mpeg" />
         你的浏览器不支持播放音乐
-    </audio>
+    </audio> -->
     <script>
-        var i = 1;
-        var t;
-
+        var index = 0;
+        var time;
+        var word = document.getElementById("word").innerHTML;
         function write() {
-            var id = document.getElementById("content");
-            var msg =
-                "亲爱的大宝贝： 暖暖风吹来 像温柔独白由黑夜偷偷记载放下了姿态 句句都是爱海水也沸腾起来我把你藏了又藏 形影分不开一天天渗透思路血脉几乎没有一个人能察觉你的存在爱潜入一片蓝蓝深海在心深处摇摆寂寞的世界我从不依赖漫天尘埃对感情构成阻碍爱潜入一片蓝蓝深海 在心深处摇摆你所有秘密我能解开就和我一样暗潮澎湃别说你还置身事外爱潜入一片蓝蓝深海在心深处摇摆寂寞的世界我从不依赖漫天尘埃对感情构成阻碍爱潜入一片蓝蓝深海在心深处摇摆你所有秘密我能解开就和我一样暗潮澎湃别说你还置身事外暖暖风吹来 像温柔独白由黑夜偷偷记载放下了姿态 句句都是爱海水也沸腾起来";
-            var len = msg.length;
-            var msg1 = msg.substring(0, i);
-            id.innerHTML = msg1;
-            if (i == len) {
-                clearInterval(t)
-            } else
-                i++;
+            if(index==word.length){
+                clearInterval(t);
+                return;
+            }
+            document.getElementById("content").innerText = word.substring(0, index++);
         }
-
-        function time1() {
-            t = setInterval(function () {
-                write()
-            }, 100);
-        }
-
+        time=setInterval(write, 80);
         window.onload = function () {
-            time1();
+            write();
         };
     </script>
 </body>
