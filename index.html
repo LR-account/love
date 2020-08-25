@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>浪漫七夕</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #main {
+            position: absolute;
+            top: 200px;
+            left: 35%;
+            cursor: pointer;
+        }
+
+        #content {
+            position: absolute;
+            top: 10px;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            width: 90%;
+            height: auto;
+            line-height: 24px;
+            margin: auto;
+            border-radius: 5px;
+            padding: 12px;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, .1);
+            box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, .1);
+            background-attachment: fixed;
+        }
+
+        #content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            filter: blur(20px);
+            z-index: -1;
+            margin: -30px;
+        }
+
+        .bg1 {
+            width: 100%;
+            height: 410px;
+            position: absolute;
+            z-index: 1;
+            left: 0;
+            bottom: -52px;
+            background: url(./image/bg6.png) -111px -86px;
+            opacity: 0.3;
+        }
+        #trial {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 0;
+            position: relative;
+            top: 82vh;
+            opacity: 0.5;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        #pulsar {
+            stroke-dasharray: 281;
+            -webkit-animation: dash 2.5s infinite linear forwards;
+        }
+
+        /*Animation is the same for all 3 SVG's*/
+        @-webkit-keyframes dash {
+            from {
+
+                stroke-dashoffset: 814;
+            }
+
+            to {
+                stroke-dashoffset: -814;
+
+            }
+
+        }
+    </style>
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/canvas_bg.js"></script>
+    <style type="text/css" href="./css/index.css"></style>
+</head>
+
+<body cz-shortcut-listen="true">
+    <canvas id="c" style="position: absolute;z-index: -1;text-align: center;" width="1339" height="937"></canvas>
+    <div id="main"></div>
+    <div id="trial">
+        <svg version="1.2" height="100" width="300" xmlns="http://www.w3.org/2000/svg" viewport="0 0 60 60"
+            xmlns:xlink="http://www.w3.org/1999/xlink">
+            <path stroke="rgba(255,0,0,1)" fill="none" stroke-width="1" stroke-linejoin="round"
+                d="M0,90L250,90Q257,60 262,87T267,95 270,88 273,92t6,35 7,-60T290,127 297,107s2,-11 10,-10 1,1 8,-10T319,95c6,4 8,-6 10,-17s2,10 9,11h210" />
+            <path id="pulsar" stroke="rgba(255,0,0,1)" fill="none" stroke-width="1" stroke-linejoin="round"
+                d="M0,90L250,90Q257,60 262,87T267,95 270,88 273,92t6,35 7,-60T290,127 297,107s2,-11 10,-10 1,1 8,-10T319,95c6,4 8,-6 10,-17s2,10 9,11h210" />
+        </svg>
+    </div>
+    <div class="bg1"></div>
+    <div id="content">
+    </div>
+    <audio autoplay="autoplay">
+        <source src="./mp3/gaobai.mp3" type="audio/mpeg" />
+        你的浏览器不支持播放音乐
+    </audio>
+    <script>
+        var i = 1;
+        var t;
+
+        function write() {
+            var id = document.getElementById("content");
+            var msg =
+                "亲爱的大宝贝： 暖暖风吹来 像温柔独白由黑夜偷偷记载放下了姿态 句句都是爱海水也沸腾起来我把你藏了又藏 形影分不开一天天渗透思路血脉几乎没有一个人能察觉你的存在爱潜入一片蓝蓝深海在心深处摇摆寂寞的世界我从不依赖漫天尘埃对感情构成阻碍爱潜入一片蓝蓝深海 在心深处摇摆你所有秘密我能解开就和我一样暗潮澎湃别说你还置身事外爱潜入一片蓝蓝深海在心深处摇摆寂寞的世界我从不依赖漫天尘埃对感情构成阻碍爱潜入一片蓝蓝深海在心深处摇摆你所有秘密我能解开就和我一样暗潮澎湃别说你还置身事外暖暖风吹来 像温柔独白由黑夜偷偷记载放下了姿态 句句都是爱海水也沸腾起来";
+            var len = msg.length;
+            var msg1 = msg.substring(0, i);
+            id.innerHTML = msg1;
+            if (i == len) {
+                clearInterval(t)
+            } else
+                i++;
+        }
+
+        function time1() {
+            t = setInterval(function () {
+                write()
+            }, 100);
+        }
+
+        window.onload = function () {
+            time1();
+        };
+    </script>
+</body>
+
+</html>
