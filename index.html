@@ -156,7 +156,7 @@
         var word = document.getElementById("word").innerHTML;
         function write() {
             if(index==word.length){
-                clearInterval(t);
+                clearInterval(time);
                 return;
             }
             document.getElementById("content").innerText = word.substring(0, index++);
